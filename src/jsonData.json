@@ -1,0 +1,65 @@
+{
+    "1" : {
+      "id": "1",
+      "questionText": "Самая большая страна?",
+      "answers": {      
+        "1": {"id": "1",
+          "answerText": "Китай",
+          "correct": "false"
+          },
+        "2": {
+          "id": "2",
+          "answerText": "Россия",
+          "correct": "true"
+        },
+        "3": {
+          "id": "3",
+          "answerText": "Канада",
+          "correct": "false"
+        }
+      },
+      "asnwered": "false"    
+    },
+    "2" : {
+      "id": "1",
+      "questionText": "Сколько будет 2х2?",
+      "answers": {      
+        "1": {"id": "1",
+          "answerText": "4",
+          "correct": "true"
+          },
+        "2": {
+          "id": "2",
+          "answerText": "5",
+          "correct": "false"
+        }
+      },
+      "asnwered": "false"    
+    },
+    "3" : {
+      "id": "1",
+      "questionText": "Самое жаркое время года?",
+      "answers": {      
+        "1": {"id": "1",
+          "answerText": "Зима",
+          "correct": "false"
+          },
+        "2": {
+          "id": "2",
+          "answerText": "Весна",
+          "correct": "false"
+        },
+        "3": {
+          "id": "3",
+          "answerText": "Лето",
+          "correct": "true"
+        },
+        "4": {
+          "id": "4",
+          "answerText": "Осень",
+          "correct": "false"
+        }
+      },
+      "asnwered": "false"    
+    }
+  }
