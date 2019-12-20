@@ -1,5 +1,5 @@
 body {
-	background-color: #d3dcff;
+	background-color: #f5fdff;
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 130%;
     color: rgb(100, 100, 100);
@@ -48,6 +48,7 @@ a {
         background: #47ba52;
         width: 33%;
         margin-top: 30px;
+        margin-bottom: 10px;
     }
 
     input[type=radio], input[type=checkbox] {
@@ -145,6 +146,7 @@ a {
         background: #47ba52;
         width: 33%;
         margin-top: 30px;
+        margin-bottom: 10px;
     }
 
     input[type=radio], input[type=checkbox] {
