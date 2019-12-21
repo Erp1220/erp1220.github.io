@@ -149,6 +149,18 @@ a {
         margin-bottom: 10px;
     }
 
+    .shade {
+        position: absolute;
+        bottom: 0;
+        height: 50px;
+        width: 100%;
+        background-color: rgba(255, 255, 255, .5);
+    }
+
+    .shade-answered {
+        display: none;
+    }
+
     input[type=radio], input[type=checkbox] {
 	    display:none;
 	}

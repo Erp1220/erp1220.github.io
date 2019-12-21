@@ -9,6 +9,7 @@ export default class QuizForm extends React.Component {
         this.state = {
             questions: jsonData,                    
             q_index: 1,
+            answered: false
         };
     }
     
@@ -22,8 +23,20 @@ export default class QuizForm extends React.Component {
             this.correctAnswers = (isCorrect === "true") ? this.correctAnswers+1 : this.correctAnswers;
             
             this.setState(({q_index}) => {                
-                return { q_index : q_index+1}                
-            })
+                return { 
+                    q_index : q_index+1                    
+                }
+            });
+            this.setState(({answered}) => {                
+                return {                    
+                    answered : false
+                }
+            });
+            
+            const radios = document.querySelectorAll("input");
+            radios.forEach((item) =>{
+               item.checked = false; 
+            });            
         }else {
             this.correctAnswers = (isCorrect === "true") ? this.correctAnswers+1 : this.correctAnswers;
 
@@ -33,44 +46,65 @@ export default class QuizForm extends React.Component {
             });
         }
     };
+
+    onLabelClick = () => {
+        const { answered } = this.state;
+        if (!answered){
+            this.setState(({ answered }) => {                
+                return { answered : !answered }                
+            })
+        }
+    };
     
     render () {
         
-        const {questions, q_index} = this.state;
+        const {questions, q_index, answered} = this.state;
         
         const quantity = Object.entries(questions).length;
 
+        let shadeClasses = "shade";
+        if (answered) {            
+            shadeClasses += " shade-answered";
+        }else {
+            //shade.classList.toggle("shade-answered");
+        }
+
         const Button = () =>{ 
-                return(
-                    <button
-                        onClick={this.onClickNextQuest}
-                        type="submit" 
-                        className="form-btn" 
-                        id="next">Далее
-                    </button>
-                );
-        };
-        
-        const QuizForm = () => {
-            const {questionText, answers} = questions[q_index];
-            
-            const renderedAnswers = Object.entries(answers).map((item) => {                 
-                const { id, answerText, correct } = item[1];
-                return <AnswerItem key={id} answerText = {answerText} value = {correct} id={id} />
-            });
-        
-            return (
-            <form name='quiz_form'>
-                <div className='quiz_container'>
-                    <p className="counter">Пройден(о) {q_index-1} вопрос(ов) из {quantity}</p>
-                    <p className="question-text">{questionText}</p>                    
-                    {renderedAnswers}        
-                    <Button />
-                    
-                </div>
-            </form>
+            return(
+                <button
+                    onClick={this.onClickNextQuest}
+                    type="submit" 
+                    className="form-btn" 
+                    id="next">Далее
+                </button>
             );
         };
-        return <QuizForm />
+        
+        const {questionText, answers} = questions[q_index];
+            
+        const renderedAnswers = Object.entries(answers).map((item) => {                 
+            const { id, answerText, correct } = item[1];
+            return <AnswerItem 
+            key={id}
+            index={this.state.index}
+            answerText = {answerText} 
+            value = {correct} 
+            id={id}
+            onLabelClick={ this.onLabelClick }
+            />
+        });
+        
+        return (
+            <form name="quiz_form">                
+                <div className="quiz_container">                    
+                    <p className="counter">Пройден(о) {q_index-1} вопрос(ов) из {quantity}</p>
+                    <p className="question-text">{questionText}</p>
+                        {renderedAnswers}
+                    <Button />
+                    <div className={shadeClasses}>
+                    </div>
+                </div>
+            </form>
+        );        
     }    
-  };
+};
